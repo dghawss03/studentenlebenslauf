@@ -628,24 +628,24 @@
           </div>
         </div>
         <div class="contact-form-wrap">
-          <form class="contact-form" onsubmit="handleSubmit(event)">
+          <form class="contact-form" action="https://formspree.io/f/mojrrkyz" method="POST" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="form-group">
                 <label>Name</label>
-                <input type="text" placeholder="Max Mustermann" required />
+                <input type="text" name="name" placeholder="Max Mustermann" required />
               </div>
               <div class="form-group">
                 <label>E-Mail</label>
-                <input type="email" placeholder="max@beispiel.de" required />
+                <input type="email" name="email" placeholder="max@beispiel.de" required />
               </div>
             </div>
             <div class="form-group">
               <label>Betreff</label>
-              <input type="text" placeholder="Projektanfrage / Kooperation" />
+              <input type="text" name="subject" placeholder="Projektanfrage / Kooperation" />
             </div>
             <div class="form-group">
               <label>Nachricht</label>
-              <textarea rows="4" placeholder="Hallo Leon, ich würde mich gerne …" required></textarea>
+              <textarea name="message" rows="4" placeholder="Hallo Leon, ich würde mich gerne …" required></textarea>
             </div>
             <button type="submit" class="btn btn-white">
               Nachricht senden
@@ -662,7 +662,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span class="footer-logo">Leon Hartmann</span>
-      <p>© 2025 · München · BWL & Marketing</p>
+      <p>© 2026 · München · BWL & Marketing</p>
       <div class="footer-links">
         <a href="#hero">Zurück nach oben ↑</a>
       </div>

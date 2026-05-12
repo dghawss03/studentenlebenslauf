@@ -62,13 +62,42 @@ const langObserver = new IntersectionObserver((entries) => {
 
 langFills.forEach(bar => langObserver.observe(bar));
 
-// --- CONTACT FORM SUBMIT ---
-function handleSubmit(e) {
+// --- CONTACT FORM SUBMIT (Formspree) ---
+async function handleSubmit(e) {
   e.preventDefault();
+  const form = e.target;
   const success = document.getElementById('formSuccess');
-  success.classList.add('visible');
-  e.target.querySelectorAll('input, textarea').forEach(f => f.value = '');
-  setTimeout(() => success.classList.remove('visible'), 4000);
+  const button = form.querySelector('button[type="submit"]');
+
+  // Disable button while sending
+  button.disabled = true;
+  button.style.opacity = '0.7';
+
+  try {
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      // Success: show message, reset form
+      success.classList.add('visible');
+      form.reset();
+      setTimeout(() => success.classList.remove('visible'), 5000);
+    } else {
+      // Formspree returned an error
+      const json = await response.json().catch(() => ({}));
+      const msg = (json.errors || []).map(err => err.message).join(', ') || 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
+      alert(msg);
+    }
+  } catch (err) {
+    alert('Netzwerkfehler. Bitte prüfe deine Verbindung und versuche es erneut.');
+  } finally {
+    button.disabled = false;
+    button.style.opacity = '';
+  }
 }
 
 // --- SMOOTH ACTIVE NAV HIGHLIGHT ---
