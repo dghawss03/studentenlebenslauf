@@ -8,8 +8,109 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── DEMO RIBBON ─────────────────────────────── */
+    .demo-ribbon {
+      position: fixed;
+      top: 28px;
+      right: -46px;
+      z-index: 9999;
+      width: 200px;
+      transform: rotate(45deg);
+      transform-origin: center center;
+      pointer-events: auto;
+      cursor: default;
+
+      background: rgba(10, 10, 18, 0.72);
+      backdrop-filter: blur(14px) saturate(1.6);
+      -webkit-backdrop-filter: blur(14px) saturate(1.6);
+      border-top: 1px solid rgba(255,255,255,.13);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      box-shadow:
+        0 4px 24px rgba(0,0,0,.35),
+        0 1px 0 rgba(255,255,255,.08) inset,
+        0 0 0 1px rgba(255,255,255,.04);
+
+      padding: 9px 0 8px;
+      text-align: center;
+      transition: box-shadow .3s ease, background .3s ease;
+    }
+    .demo-ribbon:hover {
+      background: rgba(10, 10, 18, 0.88);
+      box-shadow:
+        0 6px 32px rgba(0,0,0,.45),
+        0 0 20px rgba(99,138,255,.18),
+        0 1px 0 rgba(255,255,255,.1) inset;
+    }
+    .demo-ribbon-label {
+      display: block;
+      font-family: "DM Sans", sans-serif;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .demo-ribbon-sub {
+      display: block;
+      font-family: "DM Sans", sans-serif;
+      font-size: .54rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      line-height: 1;
+    }
+    .demo-ribbon::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 16px; right: 16px;
+      height: 1.5px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(120,160,255,.7) 30%,
+        rgba(180,210,255,.9) 50%,
+        rgba(120,160,255,.7) 70%,
+        transparent
+      );
+      border-radius: 2px;
+    }
+    .demo-ribbon-label::after {
+      content: "";
+      display: inline-block;
+      width: 4px; height: 4px;
+      background: rgba(130,170,255,.8);
+      border-radius: 50%;
+      margin-left: 6px;
+      vertical-align: middle;
+      animation: ribbonPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes ribbonPulse {
+      0%, 100% { opacity: .9; transform: scale(1); }
+      50%       { opacity: .3; transform: scale(.6); }
+    }
+    @media (max-width: 768px) {
+      .demo-ribbon {
+        top: 18px;
+        right: -52px;
+        width: 180px;
+        padding: 7px 0 6px;
+      }
+      .demo-ribbon-label { font-size: .56rem; letter-spacing: .16em; }
+      .demo-ribbon-sub   { font-size: .48rem; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- DEMO RIBBON -->
+  <div class="demo-ribbon" aria-label="Demo-Projekt">
+    <span class="demo-ribbon-label">Demo Projekt</span>
+    <span class="demo-ribbon-sub">Showcase Website</span>
+  </div>
 
   <!-- NAV -->
   <nav class="nav" id="nav">
